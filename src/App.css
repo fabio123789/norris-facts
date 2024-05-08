@@ -1,38 +1,228 @@
+:root {
+  --darkcharcoal: #333333;
+  --rustred: #b7410e;
+  --darkerrustred: #a13f14;
+  --Khaki: #c3b091;
+  --creamwhite: #f5f5dc;
+}
+
+p {
+  color: var(--creamwhite);
+  font-weight: bold;
+  font-size: 1.2em;
+  overflow-wrap: anywhere;
+}
+
+*:focus {
+  outline: none;
+}
+
 .App {
   text-align: center;
+  background-color: var(--darkcharcoal);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+.Navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+  p {
+    font-size: 1.1em;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.Searchbar {
+  background-color: var(--Khaki);
+  color: var(--darkcharcoal);
+  border: 2px solid var(--rustred);
+  font-size: 1.2em;
+  border-radius: 6px;
+  padding: 10px;
+  font-weight: bold;
+  width: 32%;
+}
+
+.PopupArea {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Popup {
+  background: var(--darkcharcoal);
+  border-radius: 6px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  .PopupButtonsArea {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
   }
-  to {
-    transform: rotate(360deg);
+  .PopupButtonsArea > *:first-child {
+    margin-right: 10px;
+  }
+}
+
+.LoadingArea{
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.LoadingHead {
+  width: 150px;
+  animation: rotate 4s infinite;
+  transform: rotate(40deg);
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(40deg);
+  }
+  50% {
+    transform: rotate(-40deg);
+  }
+  100% {
+    transform: rotate(40deg);
+  }
+}
+
+.Button {
+  background-color: var(--rustred);
+  color: var(--creamwhite);
+  border: 2px solid var(--rustred);
+  font-size: 1.2em;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 1s;
+}
+
+.Button:hover {
+  background-color: var(--darkerrustred);
+  border-color: var(--darkerrustred);
+}
+
+.Dropdown {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  background-color: var(--rustred);
+  border-radius: 6px;
+}
+
+.DropdownChildren {
+  position: absolute;
+  width: 100%;
+  top: 45px;
+  background-color: var(--rustred);
+  z-index: 100;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  max-height: 200px;
+  overflow: auto;
+  p {
+    cursor: pointer;
+    padding: 10px;
+    border-top: 1px solid var(--creamwhite);
+    margin: 0;
+    font-size: 1.2em;
+  }
+  p:last-child {
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+  }
+}
+
+.DropdownChildren p:hover {
+  background-color: var(--darkerrustred);
+}
+
+.Scroll {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+.container {
+  columns: 5;
+  column-gap: 20px;
+}
+
+.CardArea {
+  position: relative;
+  background-color: var(--Khaki);
+  border: 3px solid var(--rustred);
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  border-radius: 6px;
+  min-width: 200px;
+  max-width: 400px;
+  transition: all 1s;
+  justify-content: space-between;
+  height: fit-content;
+  box-sizing: border-box;
+  break-inside: avoid;
+  margin: 10px 0px;
+
+  .CardIcon {
+    position: absolute;
+    display: none;
+    right: 5px;
+    top: 5px;
+    color: var(--darkcharcoal);
+    cursor: pointer;
+  }
+
+  .CardText {
+    color: var(--darkcharcoal);
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: auto;
+    overflow: hidden;
+    height: 100%;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
+  .CardBottomArea {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    width: 100%;
+    .CardText {
+      font-size: 1em;
+      margin: 0;
+      height: auto;
+    }
+    .CardImage {
+      width: 100px;
+      transform: rotate(320deg);
+      opacity: 0.8;
+    }
+  }
+}
+
+.CardArea:hover {
+  transform: scale(1.05, 1.05);
+  .CardIcon {
+    display: flex;
   }
 }
