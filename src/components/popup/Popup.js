@@ -1,77 +1,72 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import Card from "../card/Card";
 import Dropdown from "../dropdown/Dropdown";
 import Button from "../button/Button";
 import Head from "../../images/head.png";
 
 async function getRandomFact(category) {
-  let request = "https://api.chucknorris.io/jokes/random";
-  if (category) request += "?category=" + category;
+  const categoryParam = category
+    ? "?category=" + encodeURIComponent(category)
+    : "";
+  const request = "https://api.chucknorris.io/jokes/random" + categoryParam;
   try {
-    const facts = await fetch(request);
-    return facts.json();
+    const response = await fetch(request);
+    return response.json();
   } catch {
-    return {};
+    return { error: "Failed to fetch fact." };
   }
 }
 
 async function getCategories() {
   try {
-    const facts = await fetch("https://api.chucknorris.io/jokes/categories");
-    return facts.json();
+    const response = await fetch("https://api.chucknorris.io/jokes/categories");
+    return response.json();
   } catch {
     return [];
   }
 }
 
-const Popup = () => {
+const Popup = ({onClick}) => {
   const [fact, setFact] = useState({});
-  const [categories, setCategories] = useState("");
+  const [categories, setCategories] = useState([]);
   const [category, setCategory] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  const fetchFact = useCallback(async (category = "") => {
+    setLoading(true);
+    const data = await getRandomFact(category);
+    if (!data.error) {
+      setFact(data);
+      setCategory(category);
+    } else {
+      setFact({});
+      console.error(data.error);
+    }
+    setLoading(false);
+  }, []);
 
   useEffect(() => {
-    getRandomFact().then((data) => {
-      setFact(data);
-    });
-    getCategories().then((data) => {
-      setCategories(data);
-    });
-  }, []);
+    fetchFact();
+    getCategories().then(setCategories);
+  }, [fetchFact]);
+
   return (
-    <div className="PopupArea">
-      <div className="Popup">
-        <div className="PopupButtonsArea">
-          <Dropdown
-            text="Random Category Fact"
-            onClick={(value) => {
-              setLoading(true);
-              getRandomFact(value).then((data) => {
-                setFact(data);
-                setCategory(value);
-                setLoading(false);
-              });
-            }}
-            values={categories}
-          />
-          <Button
-            onClick={() => {
-              setLoading(true);
-              getRandomFact().then((data) => {
-                setFact(data);
-                setCategory('');
-                setLoading(false);
-              });
-            }}
-          >
-            Random Fact
-          </Button>
-        </div>
+    <div onClick={onClick} className="PopupArea">
+      <div onClick={(event) => event.stopPropagation()}  className="Popup">
+        <i onClick={onClick} className="PopupIcon bi bi-x-lg"></i>
         {loading ? (
           <img className="LoadingHead" alt="head" src={Head} />
         ) : (
-          <Card text={fact.value} category={category} />
+          <Card text={fact.value || "No fact available"} category={fact?.categories?.length > 0 ? fact.categories.toString() : category} />
         )}
+        <div className="PopupButtonsArea">
+          <Dropdown
+            text="Random Category Fact"
+            onClick={fetchFact}
+            values={categories}
+          />
+          <Button onClick={() => fetchFact()}>Random Fact</Button>
+        </div>
       </div>
     </div>
   );

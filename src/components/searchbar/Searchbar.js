@@ -5,11 +5,11 @@ const Searchbar = ({ onChange }) => {
     <div>
       <input
         onChange={onChange}
-        placeholder="Search Chuck Facts…"
+        placeholder="Search Chuck Norris Facts…"
         className="Searchbar"
         type="search"
       />
-      <p style={{fontSize: '0.8em'}}>To show the result you need to put between 3 to 120 characters</p>
+      <p style={{fontSize: '0.8em'}}>Enter 3-120 characters to see the result, but don't worry Chuck Norris can deliver a roundhouse kick that writes every fact instantly.</p>
     </div>
   );
 };

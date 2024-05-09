@@ -43,7 +43,7 @@ p {
   border-radius: 6px;
   padding: 10px;
   font-weight: bold;
-  width: 32%;
+  width: 60%;
 }
 
 .PopupArea {
@@ -63,6 +63,15 @@ p {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+
+  .PopupIcon {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    color: var(--creamwhite);
+    cursor: pointer;
+  }
 
   .PopupButtonsArea {
     width: 100%;
@@ -157,12 +166,39 @@ p {
   height: 100%;
   padding: 10px;
   box-sizing: border-box;
-  overflow: auto;
+  overflow: hidden auto;
 }
 
 .container {
   columns: 5;
   column-gap: 20px;
+}
+
+@media screen and (max-width: 1280px) {
+  .container {
+    columns: 4;
+  }
+}
+
+@media screen and (max-width: 1120px) {
+  .container {
+    columns: 3;
+  }
+}
+
+@media screen and (max-width: 920px) {
+  .container {
+    columns: 2;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .container {
+    columns: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 .CardArea {

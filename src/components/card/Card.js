@@ -14,4 +14,4 @@ const Card = ({ text, category }) => {
   );
 };
 
-export default Card;
+export default React.memo(Card);

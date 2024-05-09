@@ -1,11 +1,11 @@
 import React from "react";
 import Button from '../button/Button'
 
-const Navbar = () => {
+const Navbar = ({onClick}) => {
   return (
     <div className="Navbar">
         <p>Chuck Norris Facts</p>
-        <Button>Get A Random Fact</Button>
+        <Button onClick={onClick}>Get A Random Fact</Button>
     </div>
   );
 };
