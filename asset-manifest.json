@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/norris-facts/static/css/main.c9bbc970.css",
+    "main.js": "/norris-facts/static/js/main.a4e90820.js",
+    "static/js/453.8a378d23.chunk.js": "/norris-facts/static/js/453.8a378d23.chunk.js",
+    "static/media/approved.png": "/norris-facts/static/media/approved.5d2422641a1c3279b710.png",
+    "static/media/head.png": "/norris-facts/static/media/head.bd89143bff33f88dbeb9.png",
+    "index.html": "/norris-facts/index.html",
+    "main.c9bbc970.css.map": "/norris-facts/static/css/main.c9bbc970.css.map",
+    "main.a4e90820.js.map": "/norris-facts/static/js/main.a4e90820.js.map",
+    "453.8a378d23.chunk.js.map": "/norris-facts/static/js/453.8a378d23.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c9bbc970.css",
+    "static/js/main.a4e90820.js"
+  ]
+}
