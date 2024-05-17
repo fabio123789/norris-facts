@@ -6,7 +6,6 @@ The "Chuck Norris Facts" project is an engaging web application built using Reac
 
 ### Technologies Used
 - **ReactJS**: For building the user interface and managing the application state.
-- **Axios**: To handle HTTP requests to the Chuck Norris API.
 - **CSS**: For styling the application and ensuring it is responsive.
 
 ### Features
